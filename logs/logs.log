@@ -1,0 +1,6 @@
+Logging Start
+Housing Dataset Download complete
+Housing Dataset Loaded from ../data/raw/
+Test data split: 0.2
+Data transformation completed
+Processed data saved in ../data/processed

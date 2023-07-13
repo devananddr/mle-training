@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>housing_project package &mdash; housing price prediction 0.02 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            housing price prediction
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">housing_project package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-housing_project.housing_functions">housing_project.housing_functions module</a><ul>
+<li><a class="reference internal" href="#housing_project.housing_functions.data_transformation"><code class="docutils literal notranslate"><span class="pre">data_transformation()</span></code></a></li>
+<li><a class="reference internal" href="#housing_project.housing_functions.fetch_housing_data"><code class="docutils literal notranslate"><span class="pre">fetch_housing_data()</span></code></a></li>
+<li><a class="reference internal" href="#housing_project.housing_functions.get_corr_matrix"><code class="docutils literal notranslate"><span class="pre">get_corr_matrix()</span></code></a></li>
+<li><a class="reference internal" href="#housing_project.housing_functions.linear_regression_model"><code class="docutils literal notranslate"><span class="pre">linear_regression_model()</span></code></a></li>
+<li><a class="reference internal" href="#housing_project.housing_functions.load_housing_data"><code class="docutils literal notranslate"><span class="pre">load_housing_data()</span></code></a></li>
+<li><a class="reference internal" href="#housing_project.housing_functions.score"><code class="docutils literal notranslate"><span class="pre">score()</span></code></a></li>
+<li><a class="reference internal" href="#housing_project.housing_functions.split_dataset"><code class="docutils literal notranslate"><span class="pre">split_dataset()</span></code></a></li>
+<li><a class="reference internal" href="#housing_project.housing_functions.stratified_split_dataset"><code class="docutils literal notranslate"><span class="pre">stratified_split_dataset()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-housing_project">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">housing price prediction</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">housing_project package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/housing_project.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="housing-project-package">
+<h1>housing_project package<a class="headerlink" href="#housing-project-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-housing_project.housing_functions">
+<span id="housing-project-housing-functions-module"></span><h2>housing_project.housing_functions module<a class="headerlink" href="#module-housing_project.housing_functions" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_project.housing_functions.data_transformation">
+<span class="sig-prename descclassname"><span class="pre">housing_project.housing_functions.</span></span><span class="sig-name descname"><span class="pre">data_transformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">housing</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_project/housing_functions.html#data_transformation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_project.housing_functions.data_transformation" title="Permalink to this definition"></a></dt>
+<dd><p>Performs data transformations.</p>
+<section id="called-functions">
+<h3>Called functions:<a class="headerlink" href="#called-functions" title="Permalink to this heading"></a></h3>
+<p>None</p>
+<dl class="field-list simple">
+<dt class="field-odd">param housing<span class="colon">:</span></dt>
+<dd class="field-odd"><p>raw data for housing prediction.</p>
+</dd>
+<dt class="field-even">type housing<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+<dt class="field-odd">returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>housing_prepared</strong> – dataframe with transformed data</p>
+</dd>
+<dt class="field-even">rtype<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+<dt class="field-odd">raises None<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_project.housing_functions.fetch_housing_data">
+<span class="sig-prename descclassname"><span class="pre">housing_project.housing_functions.</span></span><span class="sig-name descname"><span class="pre">fetch_housing_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">housing_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_project/housing_functions.html#fetch_housing_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_project.housing_functions.fetch_housing_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_project.housing_functions.get_corr_matrix">
+<span class="sig-prename descclassname"><span class="pre">housing_project.housing_functions.</span></span><span class="sig-name descname"><span class="pre">get_corr_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">housing</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_project/housing_functions.html#get_corr_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_project.housing_functions.get_corr_matrix" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_project.housing_functions.linear_regression_model">
+<span class="sig-prename descclassname"><span class="pre">housing_project.housing_functions.</span></span><span class="sig-name descname"><span class="pre">linear_regression_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">train_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_project/housing_functions.html#linear_regression_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_project.housing_functions.linear_regression_model" title="Permalink to this definition"></a></dt>
+<dd><p>Performs linear regression model prediction.</p>
+<section id="id1">
+<h3>Called functions:<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p>None</p>
+<dl class="field-list simple">
+<dt class="field-odd">param train_df<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Input DataFrame containing training data.</p>
+</dd>
+<dt class="field-even">type train_df<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+<dt class="field-odd">param train_label<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dataframe contains labels of the prediciton data</p>
+</dd>
+<dt class="field-even">type train_label<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+<dt class="field-odd">param test_df<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Input DataFrame containing testing data.</p>
+</dd>
+<dt class="field-even">type test_df<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+<dt class="field-odd">param test_label<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame containing labels of testing data..</p>
+</dd>
+<dt class="field-even">type test_label<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+<dt class="field-odd">returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Linear regression model file</p>
+</dd>
+<dt class="field-even">rtype<span class="colon">:</span></dt>
+<dd class="field-even"><p>Model_file</p>
+</dd>
+<dt class="field-odd">raises None<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_project.housing_functions.load_housing_data">
+<span class="sig-prename descclassname"><span class="pre">housing_project.housing_functions.</span></span><span class="sig-name descname"><span class="pre">load_housing_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">housing_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_project/housing_functions.html#load_housing_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_project.housing_functions.load_housing_data" title="Permalink to this definition"></a></dt>
+<dd><p>loading raw data from path.</p>
+<section id="id2">
+<h3>Called functions:<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<p>None</p>
+<dl class="field-list simple">
+<dt class="field-odd">param housing_path<span class="colon">:</span></dt>
+<dd class="field-odd"><p>path of raw data</p>
+</dd>
+<dt class="field-even">type housing_path<span class="colon">:</span></dt>
+<dd class="field-even"><p>string</p>
+</dd>
+<dt class="field-odd">returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>housing_data</strong> – pandas dataframe of raw data</p>
+</dd>
+<dt class="field-even">rtype<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+<dt class="field-odd">raises None<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_project.housing_functions.score">
+<span class="sig-prename descclassname"><span class="pre">housing_project.housing_functions.</span></span><span class="sig-name descname"><span class="pre">score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">housing_predictions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">housing_labels</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_project/housing_functions.html#score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_project.housing_functions.score" title="Permalink to this definition"></a></dt>
+<dd><p>Performs Evaluation of linear regression model.</p>
+<section id="id3">
+<h3>Called functions:<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p>None</p>
+<dl class="field-list simple">
+<dt class="field-odd">param housing_predictions<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame containing predicted data.</p>
+</dd>
+<dt class="field-even">type housing_predictions<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+<dt class="field-odd">param housing_labels<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dataframe contains Actual labels</p>
+</dd>
+<dt class="field-even">type housing_labels<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+<dt class="field-odd">returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>score</strong> – dictionary contains all the evaluation scores</p>
+</dd>
+<dt class="field-even">rtype<span class="colon">:</span></dt>
+<dd class="field-even"><p>python.dictionary</p>
+</dd>
+<dt class="field-odd">raises None<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_project.housing_functions.split_dataset">
+<span class="sig-prename descclassname"><span class="pre">housing_project.housing_functions.</span></span><span class="sig-name descname"><span class="pre">split_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">housing</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_project/housing_functions.html#split_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_project.housing_functions.split_dataset" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_project.housing_functions.stratified_split_dataset">
+<span class="sig-prename descclassname"><span class="pre">housing_project.housing_functions.</span></span><span class="sig-name descname"><span class="pre">stratified_split_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">housing</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_project/housing_functions.html#stratified_split_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_project.housing_functions.stratified_split_dataset" title="Permalink to this definition"></a></dt>
+<dd><p>Performs stratified data splits.</p>
+<section id="id4">
+<h3>Called functions:<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p>None</p>
+<dl class="field-list simple">
+<dt class="field-odd">param housing<span class="colon">:</span></dt>
+<dd class="field-odd"><p>raw data for housing prediction.</p>
+</dd>
+<dt class="field-even">type housing<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+<dt class="field-odd">param test_size<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Define splitting proprtion b/w train and test data</p>
+</dd>
+<dt class="field-even">type test_size<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+<dt class="field-odd">param random_state<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Define random state of splitting</p>
+</dd>
+<dt class="field-even">type random_state<span class="colon">:</span></dt>
+<dd class="field-even"><p>integer</p>
+</dd>
+<dt class="field-odd">returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>housing_prepared</strong> – dataframe with transformed data</p>
+</dd>
+<dt class="field-even">rtype<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+<dt class="field-odd">raises None<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+<section id="module-housing_project">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-housing_project" title="Permalink to this heading"></a></h2>
+<p>This package provides the collection of functions to ingest, test and Evaluate the Housing Dataset</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Devanand R.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
