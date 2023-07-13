@@ -1,0 +1,23 @@
+{
+    "logging_default_config": {
+        "version": 1,
+        "disable_existing_loggers": false,
+        "formatters": {
+            "default": {
+                "format": "%(asctime)s - %(name)s - %(levelname)s - %(funcName)s:%(lineno)d - %(message)s",
+                "datefmt": "%Y-%m-%d %H:%M:%S"
+            },
+            "simple": {
+                "format": "%(message)s"
+            }
+        },
+        "root": {
+            "level": "DEBUG"
+        }
+    },
+    "log_file": "../logs/logs.log",
+    "test_size": 0.2,
+    "raw_data_path": "../data/raw/",
+    "process_data_path": "../data/processed/",
+    "model_path": "../artifacts/"
+}

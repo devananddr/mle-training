@@ -5,3 +5,20 @@ line-length = 88
 profile = "black"
 py_version=39
 float_to_top = true
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "housing_project"
+authors = [
+    {name = "Devanand R", email = "devanand.rajeev@tigeranalytics.com"},
+]
+description = "Housing price prediction"
+version = "0.2"
+readme = "README.md"
+requires-python = ">=3.7"
+
+[tool.setuptools.packages.find]
+where = ["src"]  # ["."] by default

@@ -1,0 +1,8 @@
+README.md
+nonstandardcode.py
+pyproject.toml
+setup.cfg
+nonstandardcode.egg-info/PKG-INFO
+nonstandardcode.egg-info/SOURCES.txt
+nonstandardcode.egg-info/dependency_links.txt
+nonstandardcode.egg-info/top_level.txt
