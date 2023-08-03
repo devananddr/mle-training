@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 from scipy.stats import randint
 from six.moves import urllib
+from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LinearRegression
@@ -15,6 +16,8 @@ from sklearn.model_selection import (
     StratifiedShuffleSplit,
     train_test_split,
 )
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeRegressor
 
 DOWNLOAD_ROOT = "https://raw.githubusercontent.com/ageron/handson-ml/master/"
@@ -116,6 +119,37 @@ def get_corr_matrix(housing):
     return corr_matrix
 
 
+rooms_ix, bedrooms_ix, population_ix, households_ix = 3, 4, 5, 6
+
+
+class CombinedAttributesAdder(BaseEstimator, TransformerMixin):
+    def __init__(self, add_bedrooms_per_room=True):  # no *args or **kargs
+        self.add_bedrooms_per_room = add_bedrooms_per_room
+
+    def fit(self, X, y=None):
+        return self  # nothing else to do
+
+    def transform(self, X):
+        rooms_per_household = X[:, rooms_ix] / X[:, households_ix]
+        population_per_household = X[:, population_ix] / X[:, households_ix]
+        if self.add_bedrooms_per_room:
+            bedrooms_per_room = X[:, bedrooms_ix] / X[:, rooms_ix]
+            return np.c_[
+                X, rooms_per_household, population_per_household, bedrooms_per_room
+            ]
+        else:
+            return np.c_[X, rooms_per_household, population_per_household]
+
+
+num_pipeline = Pipeline(
+    [
+        ("imputer", SimpleImputer(strategy="median")),
+        ("attribs_adder", CombinedAttributesAdder()),
+        ("std_scaler", StandardScaler()),
+    ]
+)
+
+
 def data_transformation(housing):
     """
     Performs data transformations.
@@ -139,25 +173,35 @@ def data_transformation(housing):
     None
     """
 
-    imputer = SimpleImputer(strategy="median")
+    # imputer = SimpleImputer(strategy="median")
 
     housing_num = housing.drop("ocean_proximity", axis=1)
-    imputer.fit(housing_num)
-    X = imputer.transform(housing_num)
 
-    housing_tr = pd.DataFrame(X, columns=housing_num.columns, index=housing.index)
-    housing_tr["rooms_per_household"] = (
-        housing_tr["total_rooms"] / housing_tr["households"]
+    housing_num_tr = num_pipeline.fit_transform(housing_num)
+
+    housing_num_tr = pd.DataFrame(
+        housing_num_tr,
+        columns=list(housing.columns)
+        + ["rooms_per_household", "population_per_household"],
+        index=housing.index,
     )
-    housing_tr["bedrooms_per_room"] = (
-        housing_tr["total_bedrooms"] / housing_tr["total_rooms"]
-    )
-    housing_tr["population_per_household"] = (
-        housing_tr["population"] / housing_tr["households"]
-    )
+
+    # imputer.fit(housing_num)
+    # X = imputer.transform(housing_num)
+
+    # housing_tr = pd.DataFrame(X, columns=housing_num.columns, index=housing.index)
+    # housing_tr["rooms_per_household"] = (
+    #     housing_tr["total_rooms"] / housing_tr["households"]
+    # )
+    # housing_tr["bedrooms_per_room"] = (
+    #     housing_tr["total_bedrooms"] / housing_tr["total_rooms"]
+    # )
+    # housing_tr["population_per_household"] = (
+    #     housing_tr["population"] / housing_tr["households"]
+    # )
 
     housing_cat = housing[["ocean_proximity"]]
-    housing_prepared = housing_tr.join(pd.get_dummies(housing_cat, drop_first=True))
+    housing_prepared = housing_num_tr.join(pd.get_dummies(housing_cat, drop_first=True))
 
     return housing_prepared
 
