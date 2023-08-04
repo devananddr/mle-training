@@ -4,7 +4,20 @@ import logging
 import logging.config
 import os
 
+import mlflow
+import mlflow.sklearn
+
 from housing_project import housing_functions
+
+# mlflow server --backend-store-uri mlruns/ --default-artifact-root mlruns/ --host 127.0.0.1 --port 5006
+remote_server_uri = "http://127.0.0.1:5006"  # set to your server URI
+mlflow.set_tracking_uri(remote_server_uri)  # or set the MLFLOW_TRACKING_URI in the env
+
+mlflow.tracking.get_tracking_uri()
+
+exp_name = "ingest_data"
+mlflow.set_experiment(exp_name)
+
 
 with open("../config.json") as config_file:
     config = json.load(config_file)
@@ -106,33 +119,38 @@ logger = configure_logger(
 )
 logger.info("Logging Start")
 
-# To download the file and save it to the path
-housing_functions.fetch_housing_data(HOUSING_PATH)
-logger.info("Housing Dataset Download complete")
+with mlflow.start_run():
+    # To download the file and save it to the path
 
-# loading the dataset
-housing = housing_functions.load_housing_data(HOUSING_PATH)
-logger.info(f"Housing Dataset Loaded from {HOUSING_PATH}")
+    housing_functions.fetch_housing_data(HOUSING_PATH)
+    logger.info("Housing Dataset Download complete")
 
-# Splitting the dataset to train and test
-test_size = config["test_size"]
-housing_train, housing_test = housing_functions.stratified_split_dataset(
-    housing, test_size=test_size, random_state=42
-)
-logger.info(f"Test data split: {test_size}")
+    # loading the dataset
+    housing = housing_functions.load_housing_data(HOUSING_PATH)
+    logger.info(f"Housing Dataset Loaded from {HOUSING_PATH}")
 
-# Applying the transformation to train and test datasets
-housing_train_transformed = housing_functions.data_transformation(housing_train)
-housing_test_transformed = housing_functions.data_transformation(housing_test)
-logger.info("Data transformation completed")
+    # Splitting the dataset to train and test
+    test_size = config["test_size"]
+    housing_train, housing_test = housing_functions.stratified_split_dataset(
+        housing, test_size=test_size, random_state=42
+    )
+    logger.info(f"Test data split: {test_size}")
 
+    # Applying the transformation to train and test datasets
+    housing_train_transformed = housing_functions.data_transformation(housing_train)
+    housing_test_transformed = housing_functions.data_transformation(housing_test)
+    logger.info("Data transformation completed")
 
-# Saving the Processed datasets
-process_data_path = os.path.join("..", "data", "processed")
-housing_train_transformed.to_csv(
-    os.path.join(process_data_path, "train.csv"), index=False
-)
-housing_test_transformed.to_csv(
-    os.path.join(process_data_path, "test.csv"), index=False
-)
-logger.info(f"Processed data saved in {process_data_path}")
+    # Saving the Processed datasets
+    process_data_path = os.path.join("..", "data", "processed")
+    housing_train_transformed.to_csv(
+        os.path.join(process_data_path, "train.csv"), index=False
+    )
+    housing_test_transformed.to_csv(
+        os.path.join(process_data_path, "test.csv"), index=False
+    )
+    logger.info(f"Processed data saved in {process_data_path}")
+
+    mlflow.log_param(key="housing path", value=HOUSING_PATH)
+    mlflow.log_artifact(process_data_path)
+    print("Save to: {}".format(mlflow.get_artifact_uri()))
