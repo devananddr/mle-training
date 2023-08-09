@@ -1,0 +1,15 @@
+artifact_uri: /home/devanandr/mlruns/650509291358821919/c4a0846ce3fb40d88999ea4ae0f40f84/artifacts
+end_time: 1691135005466
+entry_point_name: ''
+experiment_id: '650509291358821919'
+lifecycle_stage: active
+run_id: c4a0846ce3fb40d88999ea4ae0f40f84
+run_name: gifted-wren-36
+run_uuid: c4a0846ce3fb40d88999ea4ae0f40f84
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1691135004458
+status: 3
+tags: []
+user_id: devanandr

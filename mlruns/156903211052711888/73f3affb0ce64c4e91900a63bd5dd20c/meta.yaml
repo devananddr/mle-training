@@ -1,0 +1,15 @@
+artifact_uri: /home/devanandr/mlruns/156903211052711888/73f3affb0ce64c4e91900a63bd5dd20c/artifacts
+end_time: 1691131353923
+entry_point_name: ''
+experiment_id: '156903211052711888'
+lifecycle_stage: active
+run_id: 73f3affb0ce64c4e91900a63bd5dd20c
+run_name: resilient-steed-570
+run_uuid: 73f3affb0ce64c4e91900a63bd5dd20c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1691131351070
+status: 3
+tags: []
+user_id: devanandr

@@ -4,9 +4,18 @@ import logging
 import logging.config
 import pickle
 
+import mlflow
+import mlflow.sklearn
 import pandas as pd
 
 from housing_project import housing_functions
+
+# mlflow server --backend-store-uri mlruns/ --default-artifact-root mlruns/ --host 127.0.0.1 --port 5006
+remote_server_uri = "http://127.0.0.1:5006"  # set to your server URI
+mlflow.set_tracking_uri(remote_server_uri)  # or set the MLFLOW_TRACKING_URI in the env
+
+exp_name = "model_evaluation"
+mlflow.set_experiment(exp_name)
 
 with open("../config.json") as config_file:
     config = json.load(config_file)
@@ -106,23 +115,29 @@ if log_file == None:
         "Logging results in log file is recommended. To save the logs, specify the argument from console"
     )
 
-# reading test dataset
-test_df = pd.read_csv(test_data_path)
-logger.info("Test data read successfully ")
+with mlflow.start_run():
+    # reading test dataset
+    test_df = pd.read_csv(test_data_path)
+    logger.info("Test data read successfully ")
 
-with open(model_path + "model.pkl", "rb") as f:
-    model = pickle.load(f)
-logger.info("Model loaded successfully ")
+    with open(model_path + "model.pkl", "rb") as f:
+        model = pickle.load(f)
+    logger.info("Model loaded successfully ")
 
-# splitting x and y of the dataset
-x_test = test_df.drop("median_house_value", axis=1)
-y_test = test_df[["median_house_value"]]
+    # splitting x and y of the dataset
+    x_test = test_df.drop("median_house_value", axis=1)
+    y_test = test_df[["median_house_value"]]
 
-predictions = model.predict(x_test)
+    predictions = model.predict(x_test)
 
-# Getting the scores of the model
-score = housing_functions.score(predictions, y_test)
-logger.info(f"R_Squared value : {score['r2']}")
-logger.info(f"Mean Squared Error : {score['mse']}")
-logger.info(f"Root Mean Squared Error : {score['rmse']}")
-logger.info(f"Mean Absolute Error : {score['mae']}")
+    # Getting the scores of the model
+    score = housing_functions.score(predictions, y_test)
+    logger.info(f"R_Squared value : {score['r2']}")
+    logger.info(f"Mean Squared Error : {score['mse']}")
+    logger.info(f"Root Mean Squared Error : {score['rmse']}")
+    logger.info(f"Mean Absolute Error : {score['mae']}")
+
+    mlflow.log_metric(key="rmse", value=score["rmse"])
+    mlflow.log_metric(key="mse", value=score["mse"])
+    mlflow.log_metrics({"mae": score["mae"], "r2": score["r2"]})
+    print("Save to: {}".format(mlflow.get_artifact_uri()))

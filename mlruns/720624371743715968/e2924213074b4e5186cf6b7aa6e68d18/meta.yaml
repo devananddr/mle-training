@@ -1,0 +1,15 @@
+artifact_uri: /home/devanandr/mlruns/720624371743715968/e2924213074b4e5186cf6b7aa6e68d18/artifacts
+end_time: 1691133348763
+entry_point_name: ''
+experiment_id: '720624371743715968'
+lifecycle_stage: active
+run_id: e2924213074b4e5186cf6b7aa6e68d18
+run_name: upbeat-crow-645
+run_uuid: e2924213074b4e5186cf6b7aa6e68d18
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1691133348626
+status: 3
+tags: []
+user_id: devanandr
